@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Temperature.Temperature">
+
+    <insert id="insert" parameterType="Temperature.Temperature">
+        INSERT INTO TEMPERATURE VALUES (${country}, ${spe_month}, ${spe_date}, ${temp})
+    </insert>
+
+    <update id="update" parameterType="Temperature.Temperature">
+        UPDATE TEMPERATURE SET TEMP = ${temp} WHERE COUNTRY = ${country} AND SPE_MONTH = ${spe_month} AND SPE_DATE = ${spe_date}
+    </update>
+
+    <delete id="delete" parameterType="Temperature.Temperature">
+        DELETE from TEMPERATURE WHERE COUNTRY = ${country} AND SPE_MONTH = ${spe_month} AND SPE_DATE = ${spe_date}
+    </delete>
+
+    <select id="getAll" resultMap="result">
+        SELECT * FROM TEMPERATURE
+    </select>
+
+    <select id="getSpecific" resultMap="result" parameterType="Temperature.Temperature">
+        SELECT * FROM TEMPERATURE WHERE COUNTRY = ${country} AND SPE_MONTH = ${spe_month} AND SPE_DATE = ${spe_date}
+    </select>
+
+    <resultMap id="result" type="Temperature.Temperature">
+        <result property="country" column="COUNTRY"/>
+        <result property="spe_month" column="SPE_MONTH"/>
+        <result property="spe_date" column="SPE_DATE"/>
+        <result property="temp" column="TEMP"/>
+    </resultMap>
+
+</mapper>

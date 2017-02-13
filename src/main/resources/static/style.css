@@ -1,0 +1,41 @@
+* {
+    text-align: center;
+    margin: 2px auto 0 auto;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+h3 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#view {
+    margin-top: 70px;
+}
+
+.month, .country {
+    margin-right: 30px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+    clear: both;
+    display: inline-block;
+}
+
+.chart {
+    position: relative;
+    clear: both;
+    margin-top: 300px;
+}
+
+.grid {
+    margin-top: 250px;
+}
+
+.form, .countryButton, .monthButton{
+    margin-top: 300px;
+    margin-left: 20px;
+    margin-right: 20px;
+}

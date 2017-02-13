@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <title>MyApp</title>
+    <script src="ext-all.js"></script>
+    <script src="Globals.js"></script>
+    <script src="app.js"></script>
+    <script src="jquery-3.1.1.min.js"></script>
+    <script src="app/script.js"></script>
+    <script>
+        window.onload = function() {
+            Ext.define('WeatherData', {
+                extend: 'Ext.data.Model',
+                fields: ['country', 'month', 'date', 'temperature']
+            });
+
+            var store2 = Ext.create('Ext.data.Store', {
+                model: 'WeatherData',
+                data: [
+                    {country: 'India', month: 'Jan', temperature: 58, date: new Date(2011, 0, 8)},
+                    {country: 'India', month: 'Jan', temperature: 63, date: new Date(2011, 0, 9)},
+                    {country: 'India', month: 'Jan', temperature: 73, date: new Date(2011, 0, 10)},
+                    {country: 'India', month: 'Jan', temperature: 78, date: new Date(2011, 0, 11)},
+                    {country: 'India', month: 'Jan', temperature: 81, date: new Date(2011, 0, 12)},
+                    {country: 'India', month: 'Jan', temperature: 61, date: new Date(2011, 0, 13)},
+                    {country: 'India', month: 'Jan', temperature: 23, date: new Date(2011, 0, 14)},
+                    {country: 'India', month: 'Jan', temperature: 54, date: new Date(2011, 0, 15)},
+                    {country: 'India', month: 'Jan', temperature: 90, date: new Date(2011, 0, 16)},
+                    {country: 'India', month: 'Jan', temperature: 56, date: new Date(2011, 0, 17)}
+                ]
+            });
+
+            var panel = Ext.create('Ext.grid.Panel', {
+                cls: 'grid',
+                title: 'Database Data',
+                store: store2,
+                columns: [
+                    {text: 'Country', dataIndex: 'country'},
+                    {text: 'Month', dataIndex: 'month'},
+                    {text: 'Date', dataIndex: 'date'},
+                    {text: 'Temperature', dataIndex: 'temperature'}
+                ],
+                height: 200,
+                width: 600
+            });
+            globals.viewport.removeAll();
+            globals.viewport.add(panel);
+        }
+    </script>
+    <link type="text/css" rel="stylesheet" href="resources/css/ext-all.css">
+    <link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+</body>
+</html>
