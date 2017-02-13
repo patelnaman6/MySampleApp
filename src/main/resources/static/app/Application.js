@@ -49,7 +49,7 @@ Ext.define('MyApp.Application', {
         var update = Ext.create('Ext.Button', {
             text    : 'Update Record(s)',
             handler: function() {
-                window.location.assign("http://localhost:8080/UpdateRecord.html")
+                window.location.assign("http://localhost:8080/UpdateRecord.html");
             }
         });
 

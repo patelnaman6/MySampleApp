@@ -1,40 +1,34 @@
-/**
- * Created by NAPatel on 10-Feb-17.
- */
 $(function () {
 
     console.log(window.location.host);
-    $('.reset-button').click( function(e){
-        e.preventDefault();
-        var country = $('.form-country').val('');
-        var month = $('.form-month').val('');
-        var date = $('.form-date').val('');
-        var temp = $('.form-temp').val('');
-    });
 
-    $('.submit-button').click( function(e) {
+    $('.del-submit-button').click(function(e) {
+        console.log("Delete button clicked.");
         e.preventDefault();
-        var country = $('.form-country').val();
-        var month = $('.form-month').val();
-        var date = $('.form-date').val();
-        var temp = $('.form-temp').val();
-        $('.form-country').val('');
-        $('.form-month').val('');
-        $('.form-date').val('');
-        $('.form-temp').val('');
+        console.log("Button Clicked");
+        var country = $('.del-form-country').val();
+        var month = $('.del-form-month').val();
+        var date = $('.del-form-date').val();
+        $('.del-form-country').val('');
+        $('.del-form-month').val('');
+        $('.del-form-date').val('');
+        date = Ext.Date.parse(date, 'd-M-Y');
+        date = date.toString();
         var tempData = {
-            country : "country",
-            month: "month",
-            date: "date",
-            temp: "temp"
+            country : country,
+            month: month,
+            date: date
         };
         $.ajax({
-            type: "POST",
-            url: "/AddRecord.html",
+            type: "DELETE",
+            url: "InsertData.html",
             dataType: 'json',
             data: tempData,
             success : function() {
                 alert("Insert Successful");
+            },
+            error: function(data) {
+                alert("Error: "+data.responseText);
             }
         });
     });

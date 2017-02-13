@@ -34,8 +34,12 @@ h3 {
     margin-top: 250px;
 }
 
-.form, .countryButton, .monthButton{
+.form{
     margin-top: 300px;
+}
+
+.countryButton, .monthButton {
     margin-left: 20px;
     margin-right: 20px;
+    margin-top: 300px;
 }

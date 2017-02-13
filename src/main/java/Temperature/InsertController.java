@@ -7,15 +7,14 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller
+@RestController
 public class InsertController {
-    @RequestMapping(value = "/insert", method = RequestMethod.POST)
+    @RequestMapping(value = "/InsertData.html", method = RequestMethod.POST)
     public void insert(@RequestParam("country")String country, @RequestParam("month")String month, @RequestParam("date")String date, @RequestParam("temp")double temp) throws IOException{
 
         Reader reader = Resources.getResourceAsReader("configuration.xml");

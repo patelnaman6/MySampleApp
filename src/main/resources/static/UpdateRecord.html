@@ -18,7 +18,7 @@
                 cls: 'form',
 
                 //The form will submit an AJAX request to this URL when submitted
-                //url: 'save-form.php',
+                url: 'UpdateData.html',
 
                 // Fields will be arranged vertically, stretched to full width
                 layout: 'anchor',
@@ -29,25 +29,26 @@
                 // The fields
                 defaultType: 'textfield',
                 items: [{
-                    cls: 'form-country',
+                    cls: 'update-form-country',
                     fieldLabel: 'Country',
                     name: 'country',
                     allowBlank: false
                 }, {
                     fieldLabel: 'Month',
-                    cls: 'form-month',
+                    cls: 'update-form-month',
                     name: 'month',
                     allowBlank: false
                 }, {
                     fieldLabel: 'Date',
-                    cls: 'form-date',
+                    cls: 'update-form-date',
                     name: 'date',
                     xtype: 'datefield',
                     maxValue: new Date(),
+                    format: 'd-M-Y',
                     allowBlank: false
                 }, {
                     fieldLabel: 'Temperature',
-                    cls: 'form-temp',
+                    cls: 'update-form-temp',
                     name: 'temp',
                     xtype: 'numberfield',
                     value: 30,
@@ -57,30 +58,27 @@
                 // Reset and Submit buttons
                 buttons: [{
                     text: 'Reset',
-                    cls: 'reset-button'
-                    /*,
-                 handler: function() {
-                 this.up('form').getForm().reset();
-                 }*/
+                    cls: 'update-reset-button',
+                    handler: function() {
+                     this.up('form').getForm().reset();
+                    }
             }, {
                 text: 'Update',
-                cls: 'submit-button',
+                cls: 'update-submit-button',
                 formBind: true, //only enabled once the form is valid
-                disabled: true
-                    /*,
+                disabled: true,
                  handler: function() {
-                 var form = this.up('form').getForm();
-                 if (form.isValid()) {
-                 form.submit({
-                 success: function(form, action) {
-                 Ext.Msg.alert('Success', action.result.msg);
-                 },
-                 failure: function(form, action) {
-                 Ext.Msg.alert('Failed', action.result.msg);
-                 }
-                 });
-                 }
-                 }*/
+                     var form = this.up('form').getForm();
+                     if (form.isValid()) {
+                         form.submit({
+                             success: function(form, action) {
+                                 alert("Record updated successfully.");
+                            },
+                             failure: function(form, action) {
+                                Ext.Msg.alert('Failed', action.result.msg);
+                            }
+                         });
+                    }
                 }]
             });
             globals.viewport.removeAll();

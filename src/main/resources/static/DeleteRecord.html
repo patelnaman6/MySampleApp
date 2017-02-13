@@ -18,7 +18,7 @@
                 cls: 'form',
 
                 //The form will submit an AJAX request to this URL when submitted
-                //url: 'save-form.php',
+                url: 'DeleteData.html',
 
                 // Fields will be arranged vertically, stretched to full width
                 layout: 'anchor',
@@ -29,48 +29,50 @@
                 // The fields
                 defaultType: 'textfield',
                 items: [{
-                    cls: 'form-country',
+                    cls: 'del-form-country',
                     fieldLabel: 'Country',
                     name: 'country',
                     allowBlank: false
                 }, {
                     fieldLabel: 'Month',
-                    cls: 'form-month',
+                    cls: 'del-form-month',
                     name: 'month',
                     allowBlank: false
                 }, {
                     fieldLabel: 'Date',
-                    cls: 'form-date',
+                    cls: 'del-form-date',
                     name: 'date',
                     xtype: 'datefield',
                     maxValue: new Date(),
+                    format: 'd-M-Y',
                     allowBlank: false
                 }],
 
                 buttons: [{
                     text: 'Submit',
-                    cls: 'submit-button',
+                    cls: 'del-submit-button',
                     formBind: true, //only enabled once the form is valid
-                    disabled: true
-                    /*,
-                 handler: function() {
-                 var form = this.up('form').getForm();
-                 if (form.isValid()) {
-                 form.submit({
-                 success: function(form, action) {
-                 Ext.Msg.alert('Success', action.result.msg);
-                 },
-                 failure: function(form, action) {
-                 Ext.Msg.alert('Failed', action.result.msg);
-                 }
-                 });
-                 }
-                 }*/
+                    disabled: true,
+                    handler: function () {
+                        var form = this.up('form').getForm();
+                        if (form.isValid()) {
+                            form.submit({
+                                success: function(form, action) {
+                                    alert("Record deleted successfully.");;
+                                },
+                                failure: function(form, action) {
+                                    Ext.Msg.alert('Failed', action.result.msg);
+                                }
+                            });
+
+                        }
+                    }
                 }]
             });
             globals.viewport.removeAll();
             globals.viewport.add(panel);
         }
+
     </script>
     <link type="text/css" rel="stylesheet" href="resources/css/ext-all.css">
     <link type="text/css" rel="stylesheet" href="style.css">
