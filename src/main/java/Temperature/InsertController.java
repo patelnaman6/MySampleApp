@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 public class InsertController {
-    @RequestMapping(value = "/InsertData.html", method = RequestMethod.POST)
+    @RequestMapping(value = "/InsertData", method = RequestMethod.POST)
     public void insert(@RequestParam("country")String country, @RequestParam("month")String month, @RequestParam("date")String date, @RequestParam("temp")double temp) throws IOException{
 
         Reader reader = Resources.getResourceAsReader("configuration.xml");

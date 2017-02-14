@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 public class DeleteController {
-    @RequestMapping(value = "/DeleteData.html", method = RequestMethod.POST)
+    @RequestMapping(value = "/DeleteData", method = RequestMethod.POST)
     public void delete(@RequestParam("country")String country, @RequestParam("month")String month, @RequestParam("date")String date) throws IOException{
         Reader reader = Resources.getResourceAsReader("configuration.xml");
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);

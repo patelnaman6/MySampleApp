@@ -1,8 +1,4 @@
-/*
-package Temperature; */
-/**
- * Created by NAPatel on 07-Feb-17.
- *//*
+package Temperature;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -36,4 +32,3 @@ public class myBatisReadAll {
         session.close();
     }
 }
-*/

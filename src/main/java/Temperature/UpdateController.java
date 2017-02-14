@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 public class UpdateController {
-    @RequestMapping(value = "/UpdateData.html", method = RequestMethod.POST)
+    @RequestMapping(value = "/UpdateData", method = RequestMethod.POST)
     public void update(@RequestParam("country")String country, @RequestParam("month")String month, @RequestParam("date")String date, @RequestParam("temp")double Temp) throws IOException{
 
         Reader reader = Resources.getResourceAsReader("configuration.xml");

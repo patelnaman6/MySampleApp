@@ -11,7 +11,7 @@
     <script src="app/script.js"></script>
     <script>
         window.onload = function() {
-            var countryButton = Ext.create('Ext.Button', {
+            /*var countryButton = Ext.create('Ext.Button', {
                 cls: 'countryButton',
                 text: 'Country',
                 arrowAlign: 'right',
@@ -21,19 +21,34 @@
                     {text: 'Bhutan'},
                     {text: 'Nepal'}
                 ]
+            });*/
+
+            var countryButton = Ext.create('Ext.form.ComboBox', {
+                fieldLabel: 'Choose Country',
+                store: globals.store,
+                queryMode: 'remote',
+                displayField: 'country',
+                typeAhead: true,
+                value: 'India'
+                /*listeners:{
+                    'select': function() {
+                        globals.store.clearFilter(true);
+                        globals.store.filter("country", countryButton.getRawValue());
+                    }
+                }*/
             });
 
             var chart = Ext.create('Ext.chart.Chart', {
                 cls: 'chart',
-                width: 400,
-                height: 300,
+                width: 700,
+                height: 400,
                 store: globals.store,
                 axes: [
                     {
                         title: 'Temperature',
                         type: 'Numeric',
                         position: 'left',
-                        fields: ['temperature'],
+                        fields: ['temp'],
                         minimum: 0,
                         maximum: 100
                     },
@@ -49,12 +64,12 @@
                     {
                         type: 'column',
                         xField: 'date',
-                        yField: 'temperature'
+                        yField: 'temp'
                     }
                 ]
             });
 
-            var monthButton = Ext.create('Ext.Button', {
+            /*var monthButton = Ext.create('Ext.Button', {
                 cls: 'monthButton',
                 text: 'Month',
                 arrowAlign: 'right',
@@ -63,7 +78,26 @@
                     {text: 'May'}, {text: 'June'}, {text: 'July'}, {text: 'August'},
                     {text: 'September'}, {text: 'October'}, {text: 'November'}, {text: 'December'}
                 ]
+            });*/
+
+            var monthButton = Ext.create('Ext.form.ComboBox', {
+                fieldLabel: 'Choose State',
+                store: globals.store,
+                queryMode: 'remote',
+                displayField: 'month',
+                typeAhead: true,
+                value: 'January',
+                listeners:{
+                    'select': function() {
+                        globals.store.clearFilter(true);
+                        globals.store.filter([
+                            {property: "month", value: monthButton.getRawValue()},
+                            {property: "country", value: countryButton.getRawValue()}
+                        ]);
+                    }
+                }
             });
+
             globals.viewport.removeAll();
             globals.viewport.add(countryButton);
             globals.viewport.add(chart);

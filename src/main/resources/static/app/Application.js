@@ -5,33 +5,61 @@ Ext.define('MyApp.Application', {
     name: 'MyApp',
     extend: 'Ext.app.Application',
     launch: function () {
+
         var welcomeMessage = {
-            html: '<h1>Welcome to the Weather App</h1>'
+            html: '<h1 class="welcome">Welcome to the Weather App</h1><h3 class="sub-heading">The application contains records about the average day temperatures recorded over various months of numerous countries spread across different years.</h3>'
         };
 
         var buttonHeading = {
-           html: '<h4>Click on the following options to perform the associated operations with them</h4>'
+           html: '<h4 class="heading">Click on the aforementioned options to perform the associated operations with them</h4>'
         };
 
-        globals.weatherPoint = Ext.define('WeatherPoint', {
+        /*globals.weatherData = */Ext.define('WeatherData', {
             extend: 'Ext.data.Model',
-            fields: ['temperature', 'date']
+            fields: ["country", "temp", "date", "month"]
+        });
+
+        globals.store2 = Ext.create('Ext.data.Store', {
+            model: 'WeatherData',
+            autoLoad: true,
+            proxy: {
+                type: 'ajax',
+                url: 'ReadAllRecordsData',
+                autoLoad: true,
+                reader: {
+                    type: 'json'
+                }
+            }
+        });
+
+        /*globals.weatherPoint = */Ext.define('WeatherPoint', {
+            extend: 'Ext.data.Model',
+            fields: ["country", "temp", "date", "month"]
         });
 
         globals.store = Ext.create('Ext.data.Store', {
             model: 'WeatherPoint',
-            data: [
-                {temperature: 58, date: new Date(2011, 0, 8)},
-                {temperature: 63, date: new Date(2011, 0, 9)},
-                {temperature: 73, date: new Date(2011, 0, 10)},
-                {temperature: 78, date: new Date(2011, 0, 11)},
-                {temperature: 81, date: new Date(2011, 0, 12)},
-                {temperature: 61, date: new Date(2011, 0, 13)},
-                {temperature: 23, date: new Date(2011, 0, 14)},
-                {temperature: 54, date: new Date(2011, 0, 15)},
-                {temperature: 90, date: new Date(2011, 0, 16)},
-                {temperature: 56, date: new Date(2011, 0, 17)}
-            ]
+            autoLoad: true,
+            /*data: [
+             {temperature: 58, date: new Date(2011, 0, 8)},
+             {temperature: 63, date: new Date(2011, 0, 9)},
+             {temperature: 73, date: new Date(2011, 0, 10)},
+             {temperature: 78, date: new Date(2011, 0, 11)},
+             {temperature: 81, date: new Date(2011, 0, 12)},
+             {temperature: 61, date: new Date(2011, 0, 13)},
+             {temperature: 23, date: new Date(2011, 0, 14)},
+             {temperature: 54, date: new Date(2011, 0, 15)},
+             {temperature: 90, date: new Date(2011, 0, 16)},
+             {temperature: 56, date: new Date(2011, 0, 17)}
+             ]*/
+            proxy: {
+                type: 'ajax',
+                url: 'ReadAllRecordsData',
+                autoLoad: true,
+                reader: {
+                    type: 'json'
+                }
+            }
         });
 
         globals.viewport = Ext.create('Ext.container.Viewport', {
@@ -40,6 +68,7 @@ Ext.define('MyApp.Application', {
 
         var add = Ext.create('Ext.Button', {
             text    : 'Add Record(s)',
+            cls: 'index-add',
             handler: function() {
                 window.location.assign("http://localhost:8080/AddRecord.html");
                 console.log("Button Clicked");
@@ -48,6 +77,7 @@ Ext.define('MyApp.Application', {
 
         var update = Ext.create('Ext.Button', {
             text    : 'Update Record(s)',
+            cls: 'index-update',
             handler: function() {
                 window.location.assign("http://localhost:8080/UpdateRecord.html");
             }
@@ -55,23 +85,35 @@ Ext.define('MyApp.Application', {
 
         var del = Ext.create('Ext.Button', {
             text    : 'Delete Record(s)',
+            cls: 'index-delete',
             handler: function() {
                 window.location.assign("http://localhost:8080/DeleteRecord.html");
             }
         });
 
         var read = Ext.create('Ext.Button', {
-            text    : 'Fetch Records',
+            cls: 'index-fetch-button',
+            text: 'Fetch Records',
             handler: function() {
                 window.location.assign("http://localhost:8080/ReadAllRecords.html");
             }
         });
+
+        var statistics = Ext.create('Ext.Button', {
+            cls: 'index-graph-button',
+            text: 'Statistics',
+            handler: function() {
+                window.location.assign("http://localhost:8080/Graph.html");
+            }
+        });
+
         globals.viewport.add(welcomeMessage);
         globals.viewport.add(buttonHeading);
         globals.viewport.add(add);
         globals.viewport.add(update);
         globals.viewport.add(del);
         globals.viewport.add(read);
+        globals.viewport.add(statistics);
     }
 });
 

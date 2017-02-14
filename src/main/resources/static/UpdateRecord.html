@@ -18,7 +18,7 @@
                 cls: 'form',
 
                 //The form will submit an AJAX request to this URL when submitted
-                url: 'UpdateData.html',
+                url: 'UpdateData',
 
                 // Fields will be arranged vertically, stretched to full width
                 layout: 'anchor',
@@ -59,25 +59,26 @@
                 buttons: [{
                     text: 'Reset',
                     cls: 'update-reset-button',
-                    handler: function() {
-                     this.up('form').getForm().reset();
+                    handler: function () {
+                        this.up('form').getForm().reset();
                     }
-            }, {
-                text: 'Update',
-                cls: 'update-submit-button',
-                formBind: true, //only enabled once the form is valid
-                disabled: true,
-                 handler: function() {
-                     var form = this.up('form').getForm();
-                     if (form.isValid()) {
-                         form.submit({
-                             success: function(form, action) {
-                                 alert("Record updated successfully.");
-                            },
-                             failure: function(form, action) {
-                                Ext.Msg.alert('Failed', action.result.msg);
-                            }
-                         });
+                }, {
+                    text: 'Update',
+                    cls: 'update-submit-button',
+                    formBind: true, //only enabled once the form is valid
+                    disabled: true,
+                    handler: function () {
+                        var form = this.up('form').getForm();
+                        if (form.isValid()) {
+                            form.submit({
+                                success: function (form, action) {
+                                    alert("Record updated successfully.");
+                                },
+                                failure: function (form, action) {
+                                    Ext.Msg.alert('Failed', action.result.msg);
+                                }
+                            });
+                        }
                     }
                 }]
             });
